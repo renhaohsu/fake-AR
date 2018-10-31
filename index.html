@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-hant">
+<head>
+	<meta charset="UTF-8">
+	<title>AR(偽</title>
+	<style>
+		html, body {
+		  padding: 0;
+		  margin: 0;
+		  overflow: hidden;
+		}
+
+		video {
+		/*   max-width: 100%; */
+		  max-height: 100%;
+		}
+
+		img {
+		  height: 70%;
+		  z-index: 5;
+		  position: absolute;
+		  top: 50%;
+		  left: 50%;
+		  transform: translate(-50%, -50%);  
+		}
+	</style>
+</head>
+<body>
+	<video src=""></video>
+	<img src="assets/gif/kozue-shocked-extremely-kawaii.gif" alt="for some reason gif cannot loading">
+	
+<script>
+	// 略改了複製自Mozilla的getUserMedia範例
+	// 想要获取一个最接近 1280x720 的相机分辨率
+	var constraints = { audio: false, video: { width: 1280, height: 720, facingMode: { exact: "environment" } } }; 
+
+	navigator.mediaDevices.getUserMedia(constraints)
+	.then(function(mediaStream) {
+	  var video = document.querySelector('video');
+	  video.srcObject = mediaStream;
+	  video.onloadedmetadata = function(e) {
+	    video.play();
+	  };
+	})
+	.catch(function(err) { console.log(err.name + ": " + err.message); }); // 总是在最后检查错误
+
+</script>
+
+</body>
+</html>
